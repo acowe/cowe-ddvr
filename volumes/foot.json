@@ -1,0 +1,6 @@
+{
+    "name": "foot",
+    "dimensions": [256,256,256],
+    "dataType": "uint8",
+    "file": "./rawfiles/foot_256x256x256_uint8.raw"
+}

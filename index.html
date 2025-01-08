@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>WebGL DDVR</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="app">
+        <div id="header-container">
+            <h1>Final Project: Direct Volume Renderer</h1>
+        </div>
+        <div class="settings-container">
+            <div class="setting">
+                <div class="setting-item-container">
+                    <div id="openfileLabel" class="setting-item active">Load Scene File<br></div>
+                    <div id="openfileAction" class="setting-item inactive">
+                        <input id="openfileActionInput" type="file" multiple="false" accept="application/json">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column1">
+                <label>
+                    <input type="checkbox" id="shadows" value="shadows_opt"> Shadows
+                </label>
+                <label>
+                    <input type="checkbox" id="dark" value="dark"> Dark/Light
+                </label>
+                <div class="TF">
+                    <div class="image-container">
+                        <canvas id="TFCanvas"></canvas>
+                        <svg id="svgOverlay" class="overlay"></svg>
+                    </div>
+                </div>
+                <div class="TF">
+                    <div class="image-container">
+                        <canvas id="TFColor"></canvas>
+                        <svg id="svgOverlay2" class="overlay">
+                        </svg>
+                    </div>
+                    <div><label for="inputField">Enter Text and Press Enter:</label>
+                        <span>
+                            <input type="text" id="gradStart" placeholder="0">
+                            <input type="text" id="gradMid" placeholder="0.5">
+                            <input type="text" id="gradEnd" placeholder="1">
+                        </span></div>
+                </div>
+            </div>
+            <div class="column2" id="canvas-container">
+                <canvas id="canvas"></canvas>
+            </div>
+        </div>
+    </div>
+    <noscript>You need to enable JavaScript to view the full site.</noscript>
+    <script type="module" src="js/app.js"></script>
+</body>
+
+</html>

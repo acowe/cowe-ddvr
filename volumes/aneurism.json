@@ -1,0 +1,6 @@
+{
+    "name": "aneurism",
+    "dimensions": [256,256,256],
+    "dataType": "uint8",
+    "file": "./rawfiles/aneurism_256x256x256_uint8.raw"
+}

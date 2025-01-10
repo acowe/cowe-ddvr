@@ -7,6 +7,29 @@ Continuation of final project from here: https://github.com/acowe/cg-final-proje
 * Raycasting resultant volume with or without Phong Illumination
 * Transfer function with linear ramp along with adjustable opacity and color control points
 
+## Building Shaders
+The project uses Slang to create a differentiable pipeline. To use the shaders in WebGL they need to be transpiled to GLSL. The project defines a docker image and build scripts to build the shaders.
+
+### Building the Docker Image
+This needs to be done only once per machine.
+```bash
+# Windows
+.\scripts\build-docker-image.bat
+
+# Unix/Mac
+sh ./scripts/build-docker-image.sh
+```
+
+### Building the Shaders
+Run this every time shader code is modified.
+```bash
+# Windows
+.\scripts\build-shaders.bat
+
+# Unix/Mac
+sh ./scripts/build-shaders.sh
+```
+
 ## How to use
 1. To load volume, click "Choose Files" button, then select a json file from the "Volumes" folder
 2. To move camera: left-click volume view and drag for panning, right-click and move mouse up or down for zooming, space button + left-click for translation

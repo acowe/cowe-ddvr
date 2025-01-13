@@ -138,7 +138,7 @@ export class WebGLApp {
       //gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null );
   
       // Link vertex data to the shader's attribute
-      const positionAttributeLocation = gl.getAttribLocation(program, "aPosition");
+      const positionAttributeLocation = gl.getAttribLocation(program, "position");
       gl.vertexAttribPointer(positionAttributeLocation, 3, gl.FLOAT, false, 0, 0);
       gl.enableVertexAttribArray(positionAttributeLocation);
 

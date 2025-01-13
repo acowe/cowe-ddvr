@@ -17,9 +17,9 @@ export class TFColor{
         const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0); // From left to right
     
         // Define two colors for the gradient
-        gradient.addColorStop(0, 'blue');   // Start color (left side)
-        gradient.addColorStop(0.5, 'yellow'); // End color (right side)
-        gradient.addColorStop(1, 'red'); // End color (right side)
+        gradient.addColorStop(0, '#ad2b07');   // Start color (left side)
+        gradient.addColorStop(0.5, '#FADFB4'); // End color (right side)
+        gradient.addColorStop(1, '#faf2e3'); // End color (right side)
     
         // Set the fill style to the gradient
         ctx.fillStyle = gradient;
@@ -36,9 +36,9 @@ export class TFColor{
         const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0); // From left to right
     
         // Define two colors for the gradient
-        gradient.addColorStop(start, 'blue');   // Start color (left side)
-        gradient.addColorStop(mid, 'yellow'); // End color (right side)
-        gradient.addColorStop(end, 'red'); // End color (right side)
+        gradient.addColorStop(start, '#ad2b07');   // Start color (left side)
+        gradient.addColorStop(mid, '#FADFB4'); // End color (right side)
+        gradient.addColorStop(end, '#faf2e3'); // End color (right side)
     
         // Set the fill style to the gradient
         ctx.fillStyle = gradient;
@@ -68,7 +68,7 @@ export class TFColor{
         let triangle = document.createElementNS('http://www.w3.org/2000/svg','polygon');
         triangle.setAttribute("id", "cc0");
         triangle.setAttribute("points", "-15,30,0,5,15,30");
-        triangle.setAttribute("fill", "blue");
+        triangle.setAttribute("fill", "#ad2b07");
         triangle.addEventListener("mousedown", (event) => this.startDrag('cc0', event)); 
         triangle.addEventListener("mousemove", (event) => this.drag('cc0', event));
         triangle.addEventListener("mouseup", (event) => this.stopDrag('cc0',event));
@@ -80,7 +80,7 @@ export class TFColor{
         triangle = document.createElementNS('http://www.w3.org/2000/svg','polygon');
         triangle.setAttribute("id", "cc1");
         triangle.setAttribute("points", "135,30,150,5,165,30");
-        triangle.setAttribute("fill", "yellow");
+        triangle.setAttribute("fill", "#FADFB4");
         triangle.addEventListener("mousedown", (event) => this.startDrag('cc1', event)); 
         triangle.addEventListener("mousemove", (event) => this.drag('cc1', event));
         triangle.addEventListener("mouseup", (event) => this.stopDrag('cc1',event));
@@ -92,7 +92,7 @@ export class TFColor{
         triangle = document.createElementNS('http://www.w3.org/2000/svg','polygon');
         triangle.setAttribute("id", "cc2");
         triangle.setAttribute("points", "285,30,300,5,315,30");
-        triangle.setAttribute("fill", "red");
+        triangle.setAttribute("fill", "#faf2e3");
         triangle.addEventListener("mousedown", (event) => this.startDrag('cc2', event)); 
         triangle.addEventListener("mousemove", (event) => this.drag('cc2', event));
         triangle.addEventListener("mouseup", (event) => this.stopDrag('cc2',event));

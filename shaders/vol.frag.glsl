@@ -78,11 +78,11 @@ vec3 lighting(vec3 normal, vec3 lightDir, vec3 viewDir, float distance, bool sha
 
     	// Diffuse shading
     	float diff = max(dot(normal, lightDir), 0.0);
-    	vec3 diffuse = 0.8 * diff * color;
+    	vec3 diffuse = 0.7 * diff * color;
 
     	// Specular shading
     	vec3 reflectDir = reflect(lightDir, normal);
-    	float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32.0); // Shininess = 32
+    	float spec = pow(max(dot(viewDir, reflectDir), 0.0), 8.0); // Shininess = 32
     	vec3 specular = vec3(1.0) * spec;
 
     	return ambient + diffuse + specular/distance;

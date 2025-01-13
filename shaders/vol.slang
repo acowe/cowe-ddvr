@@ -3,7 +3,7 @@ struct Vertex {
 };
 
 struct VSOut {
-    float3 position : SV_Position;
+    float4 position : SV_Position;
     float3 vray_dir;
     float3 volume_pos;
     float3 transformed_eye;
@@ -96,12 +96,12 @@ float computeOpacity(float val, float m, float x1, float y1, float x2, float y2)
 
 
 [shader("vertex")]
-VSOut vertexMain(Vertex vertex, uniform float4x4 u_v, uniform float 4x4 u_p, uniform vec3 eye_pos, uniform vec3 volume_scale) {
+VSOut vertexMain(Vertex vertex, uniform float4x4 u_v, uniform float4x4 u_p, uniform float3 eye_pos, uniform float3 volume_scale) {
 	// TODO: Implement this
     VSOut out;
-    vec3 volume_translation = vec3(0) - volume_scale * 0.5;
-    out.position = u_p * u_v * vec4(vertex.position * volume_scale + volume_translation, 1);
-    out.volume_pos = (u_v * vec4(vertex.position * volume_scale + volume_translation, 1)).xyz;
+    float3 volume_translation = float3(0) - volume_scale * 0.5;
+    out.position =  mul(float4(vertex.position * volume_scale + volume_translation, 1), u_pv);
+    out.volume_pos = mul(float4(vertex.position * volume_scale + volume_translation, 1), u_v).xyz;
     out.transformed_eye = (eye_pos - volume_translation) / volume_scale;
     out.vray_dir = vertex.position - out.transformed_eye ;
     return out;
@@ -117,10 +117,10 @@ float4 fragmentMain(VSOut input,
     uniform float x1, uniform float x2, uniform float y1, uniform float y2) : SV_Target{
 	
     // TODO: Implement this
-    const vec3 light_pos = vec3(1.0, 1.0, 1.0);
+    const float3 light_pos = float3(1.0, 1.0, 1.0);
 
     float3 ray_dir = normalize(input.vray_dir);
-    float2 t_hit = IntersectBox(input.transformed_eye, ray_dir);
+    float2 t_hit = intersect_box(input.transformed_eye, ray_dir);
 
     float m = (y2 - y1) / (x2 - x1);
     if (t_hit.x > t_hit.y) {
@@ -146,7 +146,7 @@ float4 fragmentMain(VSOut input,
         if (val < x1 || val > x2) {
             op = 0.0;
         } else {
-            op = ComputeOpacity(val, m, x1, y1, x2, y2);
+            op = computeOpacity(val, m, x1, y1, x2, y2);
         }
 
         float4 val_color = float4(colormap.SampleLevel(colormapSampler, float2(val, 0.5), 0).rgb, op);

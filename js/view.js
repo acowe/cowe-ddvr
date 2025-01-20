@@ -177,8 +177,8 @@ class View
             this.view = mat4.lookAt(mat4.create(), this.eye, this.center, this.up)
 
             this.gl.useProgram( this.program )
-            this.gl.uniformMatrix4fv( this.gl.getUniformLocation( this.program, 'u_v' ), false, this.view )
-            this.gl.uniform3fv( this.gl.getUniformLocation( this.program, 'eye_pos' ), this.eye)
+            this.gl.uniformMatrix4fv( this.gl.getUniformLocation( this.program, 'entryPointParams.u_v' ), false, this.view )
+            this.gl.uniform3fv( this.gl.getUniformLocation( this.program, 'entryPointParams.eye_pos' ), this.eye)
             this.gl.useProgram( null )
         }
     }

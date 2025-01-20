@@ -17,8 +17,8 @@ struct _MatrixStorage_float4x4_ColMajorstd430
 
 struct EntryPointParams_std430
 {
-    _MatrixStorage_float4x4_ColMajorstd430 u_v;
-    _MatrixStorage_float4x4_ColMajorstd430 u_p;
+    mat4x4 u_v;
+    mat4x4 u_p;
     highp vec3 eye_pos;
     highp vec3 volume_scale;
 };
@@ -44,7 +44,7 @@ uniform highp sampler2D SPIRV_Cross_CombinedentryPointParams_colormapentryPointP
 
 in highp vec3 input_vray_dir;
 in highp vec3 input_transformed_eye;
-out highp vec4 entryPointParam_fragmentMain;
+out vec4 entryPointParam_fragmentMain;
 
 highp vec2 intersect_box(highp vec3 orig, highp vec3 dir)
 {
@@ -208,6 +208,6 @@ void main()
         color.w = 1.0;
     }
     entryPointParam_fragmentMain = color;*/
-    entryPointParam_fragmentMain = vec4(1.0,1.0,1.0,1.0);
+    //entryPointParam_fragmentMain = vec4(0.5,0.0,0.0,1.0);
 }
 

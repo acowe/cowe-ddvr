@@ -113,7 +113,7 @@ export class WebGLApp {
       // Get WebGL rendering context
       this.gl = canvas.getContext("webgl2");
       // Create the WebGL program
-      this.program = this.createProgram(this.gl, "./shaders/vol.vert.glsl", "./shaders/unlit.frag.glsl");
+      this.program = this.createProgram(this.gl, "./shaders/vol.vert.glsl", "./shaders/vol.frag.glsl");
 
       //this.setSolid(false)
       //this.setOpacity(0.0, 1.0, 0.0, 1.0)
@@ -129,6 +129,7 @@ export class WebGLApp {
       // Create a buffer and put the vertices data in it
       const vbuffer = gl.createBuffer();
       gl.bindBuffer(gl.ARRAY_BUFFER, vbuffer);
+      console.log(this.strip)
       gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.strip), gl.STATIC_DRAW);
       //gl.bindBuffer(gl.ARRAY_BUFFER, null );
   

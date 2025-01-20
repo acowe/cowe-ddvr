@@ -53,7 +53,7 @@ void main()
     mat4 _61 = entryPointParams.u_p;
     vec3 volume_translation = vec3(0.0) - (entryPointParams.volume_scale * 0.5);
     VSOut _out;
-    _out.position = mat4(_61[0] * _26[0], _61[1] * _26[1], _61[2] * _26[2], _61[3] * _26[3]) * vec4((vertex_position * entryPointParams.volume_scale) + volume_translation, 1.0);
+    _out.position = _61 * _26 * vec4((vertex_position * entryPointParams.volume_scale) + volume_translation, 1.0);
     _out.volume_pos = (entryPointParams.u_v * vec4((vertex_position * entryPointParams.volume_scale) + volume_translation, 1.0)).xyz;
     vec3 _110 = (entryPointParams.eye_pos - volume_translation) / entryPointParams.volume_scale;
     _out.transformed_eye = _110;
@@ -63,4 +63,3 @@ void main()
     entryPointParam_vertexMain_volume_pos = _out.volume_pos;
     input_transformed_eye = _out.transformed_eye;
 }
-

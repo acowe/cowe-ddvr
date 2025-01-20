@@ -15,10 +15,10 @@ export class Volume{
         this.colormap = create2DTexture(this.gl,"TFCanvas")
         
         this.gl.useProgram( this.program )
-        this.gl.uniform3fv( this.gl.getUniformLocation( this.program, 'volume_scale' ), this.volScale )
-        this.gl.uniform3iv( this.gl.getUniformLocation( this.program, 'volume_dims' ), this.dimensions )
-        this.gl.uniform1i( this.gl.getUniformLocation( this.program, 'volume'), 0)
-	    this.gl.uniform1i( this.gl.getUniformLocation( this.program, 'colormap'), 1)
+        this.gl.uniform3fv( this.gl.getUniformLocation( this.program, 'entryPointParams.volume_scale' ), this.volScale )
+        this.gl.uniform3iv( this.gl.getUniformLocation( this.program, 'EntryPointParams_std430_1.volume_dims' ), this.dimensions )
+        this.gl.uniform1i( this.gl.getUniformLocation( this.program, 'SPIRV_Cross_CombinedentryPointParams_volumeentryPointParams_volumeSampler'), 0)
+	    this.gl.uniform1i( this.gl.getUniformLocation( this.program, 'SPIRV_Cross_CombinedentryPointParams_volumeentryPointParams_colormapSampler'), 1)
         this.gl.useProgram( null )
 
 
@@ -30,7 +30,7 @@ export class Volume{
         console.log(document.getElementById("TFCanvas"))
         this.colormap = create2DTexture(this.gl,"TFCanvas")
         this.gl.useProgram( this.program )
-	    this.gl.uniform1i( this.gl.getUniformLocation( this.program, 'colormap'), 1)
+	    this.gl.uniform1i( this.gl.getUniformLocation( this.program, 'SPIRV_Cross_CombinedentryPointParams_colormapentryPointParams_colormapSampler'), 1)
         this.gl.useProgram( null )
     }
 

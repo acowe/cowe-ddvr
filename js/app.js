@@ -57,29 +57,6 @@ document.getElementById("svgOverlay").addEventListener("mouseup", function (even
     tfc.stopDrag(tf.select,event)
 });
 
-document.getElementById('gradStart').addEventListener('keyup', function(event) {
-    if (event.key === 'Enter') {
-        const newVal = parseFloat(document.getElementById('gradStart').value);
-        tfc.updateColorCanvas(newVal)
-        webglapp.volume.updateColormap()
-    }
-})
-
-document.getElementById('gradMid').addEventListener('keyup', function(event) {
-    if (event.key === 'Enter') {
-        const newVal = parseFloat(document.getElementById('gradMid').value);
-        tfc.updateColorCanvas(tfc.start, newVal, tfc.end)
-        webglapp.volume.updateColormap()
-    }
-})
-
-document.getElementById('gradEnd').addEventListener('keyup', function(event) {
-    if (event.key === 'Enter') {
-        const newVal = parseFloat(document.getElementById('gradEnd').value);
-        tfc.updateColorCanvas(tfc.start, tfc.mid, newVal)
-        webglapp.volume.updateColormap()
-    }
-})
     
 
 

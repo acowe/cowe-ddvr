@@ -26,10 +26,10 @@ export class WebGLApp {
         console.log(xmin, xmax, ymin, ymax, (ymax - ymin)/(xmax - xmin))
 
         this.gl.useProgram( this.program )
-        this.gl.uniform1f( this.gl.getUniformLocation( this.program, 'x1' ), xmin )
-        this.gl.uniform1f( this.gl.getUniformLocation( this.program, 'x2' ), xmax )
-        this.gl.uniform1f( this.gl.getUniformLocation( this.program, 'y1' ), ymin )
-        this.gl.uniform1f( this.gl.getUniformLocation( this.program, 'y2' ), ymax )
+        this.gl.uniform1f( this.gl.getUniformLocation( this.program, 'EntryPointParams_std430_1.x1' ), xmin )
+        this.gl.uniform1f( this.gl.getUniformLocation( this.program, 'EntryPointParams_std430_1.x2' ), xmax )
+        this.gl.uniform1f( this.gl.getUniformLocation( this.program, 'EntryPointParams_std430_1.y1' ), ymin )
+        this.gl.uniform1f( this.gl.getUniformLocation( this.program, 'EntryPointParams_std430_1.y2' ), ymax )
         this.gl.useProgram( null )
     }
 
@@ -113,7 +113,7 @@ export class WebGLApp {
       // Get WebGL rendering context
       this.gl = canvas.getContext("webgl2");
       // Create the WebGL program
-      this.program = this.createProgram(this.gl, "./shaders/vol.vert.glsl", "./shaders/vol.frag.glsl");
+      this.program = this.createProgram(this.gl, "./shaders/vol.vert.glsl", "./shaders/unlit.frag.glsl");
 
       //this.setSolid(false)
       //this.setOpacity(0.0, 1.0, 0.0, 1.0)
@@ -138,7 +138,7 @@ export class WebGLApp {
       //gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null );
   
       // Link vertex data to the shader's attribute
-      const positionAttributeLocation = gl.getAttribLocation(program, "position");
+      const positionAttributeLocation = gl.getAttribLocation(program, "vertex_position");
       gl.vertexAttribPointer(positionAttributeLocation, 3, gl.FLOAT, false, 0, 0);
       gl.enableVertexAttribArray(positionAttributeLocation);
 

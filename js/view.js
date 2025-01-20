@@ -57,12 +57,12 @@ class View
         // Create a projection matrix using mat4 perspective function
         this.projection = mat4.perspective(mat4.create(), fovy, aspRatio, near, far);
         
-        
         // Use the shader's setUniform4x4f function to pass the matrices
         this.gl.useProgram( this.program )
-        this.gl.uniformMatrix4fv( this.gl.getUniformLocation( this.program, 'u_v' ), false, this.view )
-        this.gl.uniformMatrix4fv( this.gl.getUniformLocation( this.program, 'u_p' ), false, this.projection )
-        this.gl.uniform3fv( this.gl.getUniformLocation( this.program, 'eye_pos' ), this.eye)
+
+        this.gl.uniformMatrix4fv( this.gl.getUniformLocation( this.program, 'entryPointParams.u_v' ), false, this.view )
+        this.gl.uniformMatrix4fv( this.gl.getUniformLocation( this.program, 'entryPointParams.u_p' ), false, this.projection )
+        this.gl.uniform3fv( this.gl.getUniformLocation( this.program, 'entryPointParams.eye_pos' ), this.eye)
         this.gl.useProgram( null )
 
     }  

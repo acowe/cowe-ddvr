@@ -99,6 +99,7 @@ float computeOpacity(float val, float m, float x1, float y1, float x2, float y2)
 VSOut vertexMain(Vertex vertex, uniform float4x4 u_v, uniform float4x4 u_p, uniform float3 eye_pos, uniform float3 volume_scale) {
 	// TODO: Implement this
     VSOut out;
+    float4x4 u_pv = u_p * u_v;
     float3 volume_translation = float3(0) - volume_scale * 0.5;
     out.position =  mul(float4(vertex.position * volume_scale + volume_translation, 1), u_pv);
     out.volume_pos = mul(float4(vertex.position * volume_scale + volume_translation, 1), u_v).xyz;

@@ -29,8 +29,8 @@ struct EntryPointParams_std430_1
 {
     ivec3 volume_dims;
     highp float dt_scale;
-    int dark;
-    int shadow;
+    bool dark;
+    bool shadow;
     highp float x1;
     highp float x2;
     highp float y1;
@@ -126,7 +126,7 @@ highp float linear_to_srgb(highp float x)
 
 void main()
 {
-    /*highp vec3 _171 = normalize(input_vray_dir);
+    highp vec3 _171 = normalize(input_vray_dir);
     highp vec2 _173 = intersect_box(input_transformed_eye, _171);
     highp vec2 t_hit = _173;
     if (_173.x > _173.y)
@@ -141,22 +141,14 @@ void main()
     highp vec3 p = input_transformed_eye + (_171 * (t_hit.x + (wang_hash(int(input_transformed_eye.x + (640.0 * input_transformed_eye.y))) * dt)));
     bool _142;
     highp float op;
-    for (;;)
+    for (float t = t_hit.x; t < t_hit.y; t += dt)
     {
-        highp vec3 p_1;
-        bool _149_ladder_break = false;
-        switch (0)
-        {
-            default:
-            {
-                if (!(t < t_hit.y))
-                {
-                    _149_ladder_break = true;
-                    break;
-                }
-                highp vec4 _317 = textureLod(SPIRV_Cross_CombinedentryPointParams_volumeentryPointParams_volumeSampler, p, 0.0);
-                highp vec3 _375 = input_transformed_eye - p;
-                if (_317.x < entryPointParams_1.x1)
+        highp vec4 _317 = texture(SPIRV_Cross_CombinedentryPointParams_volumeentryPointParams_volumeSampler, p);
+        highp vec3 _375 = input_transformed_eye - p;
+        op = _317.x;
+        entryPointParam_fragmentMain.w += ((1.0 - entryPointParam_fragmentMain.w) * op);
+        p += _171 * dt;
+                /*if (_317.x < entryPointParams_1.x1)
                 {
                     _142 = true;
                 }
@@ -171,43 +163,39 @@ void main()
                 else
                 {
                     op = computeOpacity(_317.x, (entryPointParams_1.y2 - entryPointParams_1.y1) / (entryPointParams_1.x2 - entryPointParams_1.x1), entryPointParams_1.x1, entryPointParams_1.y1, entryPointParams_1.x2, entryPointParams_1.y2);
-                }
-                highp vec4 _453 = textureLod(SPIRV_Cross_CombinedentryPointParams_colormapentryPointParams_colormapSampler, vec2(_317.x, 0.5), 0.0);
-                highp vec4 _456 = vec4(_453.xyz, op);
-                highp vec4 val_color = _456;
-                val_color.w = 1.0 - pow(1.0 - _456.w, entryPointParams_1.dt_scale);
-                highp vec4 _465 = color;
-                highp vec4 _467 = color;
-                highp vec3 _518 = _465.xyz + ((val_color.xyz * ((1.0 - _467.w) * val_color.w)) * lighting(ComputeGradient(p, dt, SPIRV_Cross_CombinedentryPointParams_volumeentryPointParams_volumeSampler), normalize(_171), normalize(_375), length(_375), unpackStorage(entryPointParams_1.shadow)));
-                color.x = _518.x;
-                color.y = _518.y;
-                color.z = _518.z;
-                color.w += ((1.0 - color.w) * val_color.w);
-                if (color.w >= 0.949999988079071044921875)
-                {
-                    _149_ladder_break = true;
-                    break;
-                }
-                p_1 = p + (_171 * dt);
-                break;
-            }
-        }
-        if (_149_ladder_break)
+                }*/
+        entryPointParam_fragmentMain += ((1.0 - entryPointParam_fragmentMain.w) * op);
+        /*highp vec4 _453 = texture(SPIRV_Cross_CombinedentryPointParams_colormapentryPointParams_colormapSampler, vec2(_317.x, 0.5));
+        highp vec4 _456 = vec4(_453.xyz, op);
+        highp vec4 val_color = _456;
+        val_color.w = 1.0 - pow(1.0 - _456.w, entryPointParams_1.dt_scale);
+        highp vec4 _465 = color;
+        highp vec4 _467 = color;
+        entryPointParam_fragmentMain.xyz += _465.xyz + ((val_color.xyz * ((1.0 - entryPointParam_fragmentMain.w) * val_color.w)) * lighting(ComputeGradient(p, dt, SPIRV_Cross_CombinedentryPointParams_volumeentryPointParams_volumeSampler), normalize(_171), normalize(_375), length(_375), entryPointParams_1.shadow));
+        //color.x = _518.x;
+        //color.y = _518.y;
+        //color.z = _518.z;
+        entryPointParam_fragmentMain.w += ((1.0 - entryPointParam_fragmentMain.w) * val_color.w);
+        if (color.w >= 0.949999988079071044921875)
         {
             break;
-        }
-        t += dt;
-        p = p_1;
-        continue;
+        }*/
+       
     }
+
     color.x = linear_to_srgb(color.x);
     color.y = linear_to_srgb(color.y);
     color.z = linear_to_srgb(color.z);
-    if (unpackStorage(entryPointParams_1.dark))
+
+    /*if (entryPointParams_1.dark)
     {
         color.w = 1.0;
-    }
-    entryPointParam_fragmentMain = color;*/
-    //entryPointParam_fragmentMain = vec4(0.5,0.0,0.0,1.0);
+    }*/
+
+   
+
+    vec4 c = vec4(op,0.0,0.0,op);
+    
+    //entryPointParam_fragmentMain = color;
 }
 

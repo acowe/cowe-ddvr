@@ -26,24 +26,25 @@ export class WebGLApp {
         console.log(xmin, xmax, ymin, ymax, (ymax - ymin)/(xmax - xmin))
 
         this.gl.useProgram( this.program )
-        this.gl.uniform1f( this.gl.getUniformLocation( this.program, 'EntryPointParams_std430_1.x1' ), xmin )
-        this.gl.uniform1f( this.gl.getUniformLocation( this.program, 'EntryPointParams_std430_1.x2' ), xmax )
-        this.gl.uniform1f( this.gl.getUniformLocation( this.program, 'EntryPointParams_std430_1.y1' ), ymin )
-        this.gl.uniform1f( this.gl.getUniformLocation( this.program, 'EntryPointParams_std430_1.y2' ), ymax )
+        this.gl.uniform1f( this.gl.getUniformLocation( this.program, 'entryPointParams_1.x1' ), xmin )
+        this.gl.uniform1f( this.gl.getUniformLocation( this.program, 'entryPointParams_1.x2' ), xmax )
+        this.gl.uniform1f( this.gl.getUniformLocation( this.program, 'entryPointParams_1.y1' ), ymin )
+        this.gl.uniform1f( this.gl.getUniformLocation( this.program, 'entryPointParams_1.y2' ), ymax )
         this.gl.useProgram( null )
     }
 
     setDark(state_in){
+        console.log(state_in)
         this.dark = state_in
         this.gl.useProgram( this.program )
-        this.gl.uniform1f( this.gl.getUniformLocation( this.program, 'dark' ), state_in )
+        this.gl.uniform1f( this.gl.getUniformLocation( this.program, 'entryPointParams_1.dark' ), state_in )
         this.gl.useProgram( null )
 
     }
 
     setShadows(state_in){
         this.gl.useProgram( this.program )
-        this.gl.uniform1f( this.gl.getUniformLocation( this.program, 'shadow' ), state_in )
+        this.gl.uniform1f( this.gl.getUniformLocation( this.program, 'entryPointParams_1.shadow' ), state_in )
         this.gl.useProgram( null )
 
     }
@@ -58,7 +59,7 @@ export class WebGLApp {
             let dims = appState.getDims(), data = appState.getData(), file = appState.getFilepath(), type = appState.getDataType()
             this.volume = new Volume(this.gl, this.program, file, dims, data, type);
             this.gl.useProgram( this.program )
-            this.gl.uniform1f( this.gl.getUniformLocation( this.program, 'dt_scale' ), this.samplingRate )
+            this.gl.uniform1f( this.gl.getUniformLocation( this.program, 'entryPointParams_1.dt_scale' ), this.samplingRate )
             this.gl.useProgram( null )
         }
         console.log(this.volume)
@@ -117,8 +118,8 @@ export class WebGLApp {
 
       //this.setSolid(false)
       //this.setOpacity(0.0, 1.0, 0.0, 1.0)
-      this.setShadows(false)
-      this.setDark(false)
+      //this.setShadows(false)
+      //this.setDark(false)
       
 
 

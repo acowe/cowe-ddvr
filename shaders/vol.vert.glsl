@@ -23,19 +23,7 @@ struct EntryPointParams_std430
 
 uniform EntryPointParams_std430 entryPointParams;
 
-struct EntryPointParams_std430_1
-{
-    ivec3 volume_dims;
-    float dt_scale;
-    int dark;
-    int shadow;
-    float x1;
-    float x2;
-    float y1;
-    float y2;
-};
 
-uniform EntryPointParams_std430_1 entryPointParams_1;
 
 in vec3 vertex_position;
 out vec3 input_vray_dir;
